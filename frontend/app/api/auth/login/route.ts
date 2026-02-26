@@ -65,7 +65,7 @@ export async function POST(request: Request) {
     }
 
     if (reason.startsWith("SUPABASE_")) {
-      return NextResponse.json(apiError("Connexion à la base impossible (Supabase)."), {
+      return NextResponse.json(apiError(`Connexion à la base impossible (Supabase: ${reason}).`), {
         status: 500,
       });
     }
