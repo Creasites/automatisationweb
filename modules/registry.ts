@@ -1,0 +1,147 @@
+export interface ToolModule {
+  id: string;
+  label: string;
+  description: string;
+  category: "analyse" | "generateur" | "pratique" | "business";
+  uiPath: string;
+  apiPath: string;
+}
+
+export const toolModules: ToolModule[] = [
+  {
+    id: "site-analyzer",
+    label: "Site Analyzer",
+    description: "Analyse rapide d'une URL: HTML + headers HTTP.",
+    category: "analyse",
+    uiPath: "/tools/site-analyzer",
+    apiPath: "/api/tools/site-analyzer",
+  },
+  {
+    id: "meta-tags-extractor",
+    label: "Meta Tags Extractor",
+    description: "Extraction des balises meta et link d'une page web.",
+    category: "analyse",
+    uiPath: "/tools/meta-tags-extractor",
+    apiPath: "/api/tools/meta-tags-extractor",
+  },
+  {
+    id: "https-ssl-checker",
+    label: "HTTPS / SSL Checker",
+    description: "Contrôle HTTPS, redirection HTTP et présence SSL.",
+    category: "analyse",
+    uiPath: "/tools/https-ssl-checker",
+    apiPath: "/api/tools/https-ssl-checker",
+  },
+  {
+    id: "basic-seo-tools",
+    label: "Basic SEO Tools",
+    description: "Vérification SEO de base: title, description, H1, canonical, OG.",
+    category: "analyse",
+    uiPath: "/tools/basic-seo-tools",
+    apiPath: "/api/tools/basic-seo-tools",
+  },
+  {
+    id: "mobile-friendly-checker",
+    label: "Mobile-Friendly Checker",
+    description: "Vérifie les signaux de compatibilité mobile d'une page.",
+    category: "analyse",
+    uiPath: "/tools/mobile-friendly-checker",
+    apiPath: "/api/tools/mobile-friendly-checker",
+  },
+  {
+    id: "speed-test",
+    label: "Speed Test",
+    description: "Mesure rapide des performances HTML et headers d'une page.",
+    category: "analyse",
+    uiPath: "/tools/speed-test",
+    apiPath: "/api/tools/speed-test",
+  },
+  {
+    id: "text-generator",
+    label: "Text Generator",
+    description: "Génère un texte court à partir d'un sujet et d'un ton.",
+    category: "generateur",
+    uiPath: "/tools/text-generator",
+    apiPath: "/api/tools/text-generator",
+  },
+  {
+    id: "slogan-idea-generator",
+    label: "Slogan / Idea Generator",
+    description: "Génère un slogan et une idée de contenu à partir d'un sujet.",
+    category: "generateur",
+    uiPath: "/tools/slogan-idea-generator",
+    apiPath: "/api/tools/slogan-idea-generator",
+  },
+  {
+    id: "page-structure-generator",
+    label: "Page Structure Generator",
+    description: "Propose une structure de page selon le type et l'objectif.",
+    category: "generateur",
+    uiPath: "/tools/page-structure-generator",
+    apiPath: "/api/tools/page-structure-generator",
+  },
+  {
+    id: "color-palette-generator",
+    label: "Color Palette Generator",
+    description: "Génère une palette harmonieuse à partir d'une couleur de base.",
+    category: "generateur",
+    uiPath: "/tools/color-palette-generator",
+    apiPath: "/api/tools/color-palette-generator",
+  },
+  {
+    id: "qr-code-generator",
+    label: "QR Code Generator",
+    description: "Génère un QR code PNG à partir d'un texte ou lien.",
+    category: "pratique",
+    uiPath: "/tools/qr-code-generator",
+    apiPath: "/api/tools/qr-code-generator",
+  },
+  {
+    id: "unit-converter",
+    label: "Format / Unit Converters",
+    description: "Convertit des unités de longueur, poids et température.",
+    category: "pratique",
+    uiPath: "/tools/unit-converter",
+    apiPath: "/api/tools/unit-converter",
+  },
+  {
+    id: "encoder-decoder-tools",
+    label: "Encoder / Decoder Tools",
+    description: "Encode et décode du texte en Base64 ou URL.",
+    category: "pratique",
+    uiPath: "/tools/encoder-decoder-tools",
+    apiPath: "/api/tools/encoder-decoder-tools",
+  },
+  {
+    id: "favicon-generator",
+    label: "Favicon Generator",
+    description: "Crée un favicon SVG simple à partir d'une lettre.",
+    category: "pratique",
+    uiPath: "/tools/favicon-generator",
+    apiPath: "/api/tools/favicon-generator",
+  },
+  {
+    id: "image-compressor",
+    label: "Image Compressor",
+    description: "Compresse des images en JPEG/WEBP côté navigateur.",
+    category: "pratique",
+    uiPath: "/tools/image-compressor",
+    apiPath: "/api/tools/image-compressor",
+  },
+  {
+    id: "legal-pages-generator",
+    label: "Legal Pages Generator",
+    description: "Génère une base de pages légales en français.",
+    category: "business",
+    uiPath: "/tools/legal-pages-generator",
+    apiPath: "/api/tools/legal-pages-generator",
+  },
+  {
+    id: "templates-library",
+    label: "Templates Library",
+    description: "Bibliothèque de templates de pages simples et prêtes à adapter.",
+    category: "business",
+    uiPath: "/tools/templates-library",
+    apiPath: "/api/tools/templates-library",
+  },
+];

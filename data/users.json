@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "email": "test@test.com",
+      "passwordHash": "$2b$10$Ma7iniY0D1o6fUZypIsH4.BX6HJXaVwnMvRsG1XGVMqj.AwKM.pHS",
+      "createdAt": "2026-02-26T14:41:13.575Z",
+      "updatedAt": "2026-02-26T14:42:57.763Z",
+      "trialEndsAt": "2026-03-03T14:41:13.568Z",
+      "subscriptionStatus": "active",
+      "stripeCustomerId": "cus_U3C90TR8jdGfYG",
+      "stripeSubscriptionId": "sub_1T55mCJ1DoaJ4EXLk3nYMcld"
+    },
+    {
+      "email": "test2@test.com",
+      "passwordHash": "$2b$10$n2UkCS7eSwHtng0TDIeGFO4nkrZ4m5GIw184C93i28hUQpvntjWDy",
+      "createdAt": "2026-02-26T14:48:03.391Z",
+      "updatedAt": "2026-02-26T14:49:15.055Z",
+      "trialEndsAt": "2026-03-03T14:48:03.388Z",
+      "subscriptionStatus": "active",
+      "stripeCustomerId": "cus_U3CF915hv7bLcV",
+      "stripeSubscriptionId": "sub_1T55sJJ1DoaJ4EXLyYkB5k26"
+    }
+  ]
+}
