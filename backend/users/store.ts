@@ -31,8 +31,8 @@ const dataDir = path.resolve(process.cwd(), "..", "data");
 const usersDbPath = path.join(dataDir, "users.json");
 
 function getSupabaseConfig() {
-  const url = process.env.SUPABASE_URL?.trim();
-  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
+  const url = process.env.SUPABASE_URL?.trim().replace(/\s+/g, "");
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY?.replace(/\s+/g, "");
 
   if (!url || !serviceRoleKey) {
     return null;
