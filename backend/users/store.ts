@@ -164,8 +164,16 @@ export async function findUserByEmail(email: string) {
     }
   }
 
-  const db = await readDb();
-  return db.users.find((user) => user.email.toLowerCase() === normalizeEmail(email)) ?? null;
+  if (process.env.NODE_ENV === "production") {
+    throw new Error("SUPABASE_CONFIG_MISSING");
+  }
+
+  try {
+    const db = await readDb();
+    return db.users.find((user) => user.email.toLowerCase() === normalizeEmail(email)) ?? null;
+  } catch {
+    throw new Error("LOCAL_STORAGE_UNAVAILABLE");
+  }
 }
 
 export async function findUserByStripeCustomerId(customerId: string) {
@@ -230,28 +238,39 @@ export async function createUser(input: {
     }
   }
 
-  const db = await readDb();
-  const normalizedEmail = normalizeEmail(input.email);
-  const existing = db.users.find((user) => user.email.toLowerCase() === normalizedEmail);
-
-  if (existing) {
-    throw new Error("Utilisateur déjà existant");
+  if (process.env.NODE_ENV === "production") {
+    throw new Error("SUPABASE_CONFIG_MISSING");
   }
 
-  const now = new Date().toISOString();
-  const user: UserRecord = {
-    email: normalizedEmail,
-    passwordHash: input.passwordHash,
-    createdAt: now,
-    updatedAt: now,
-    trialEndsAt: input.trialEndsAt,
-    subscriptionStatus: "inactive",
-  };
+  try {
+    const db = await readDb();
+    const normalizedEmail = normalizeEmail(input.email);
+    const existing = db.users.find((user) => user.email.toLowerCase() === normalizedEmail);
 
-  db.users.push(user);
-  await writeDb(db);
+    if (existing) {
+      throw new Error("Utilisateur déjà existant");
+    }
 
-  return user;
+    const now = new Date().toISOString();
+    const user: UserRecord = {
+      email: normalizedEmail,
+      passwordHash: input.passwordHash,
+      createdAt: now,
+      updatedAt: now,
+      trialEndsAt: input.trialEndsAt,
+      subscriptionStatus: "inactive",
+    };
+
+    db.users.push(user);
+    await writeDb(db);
+
+    return user;
+  } catch (error) {
+    if (error instanceof Error && error.message === "Utilisateur déjà existant") {
+      throw error;
+    }
+    throw new Error("LOCAL_STORAGE_UNAVAILABLE");
+  }
 }
 
 export async function updateUser(email: string, patch: Partial<UserRecord>) {

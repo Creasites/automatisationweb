@@ -53,7 +53,23 @@ export async function POST(request: Request) {
     });
 
     return response;
-  } catch {
+  } catch (error) {
+    const reason = error instanceof Error ? error.message : "UNKNOWN_ERROR";
+    console.error("AUTH_LOGIN_ERROR", reason);
+
+    if (reason === "SUPABASE_CONFIG_MISSING" || reason === "LOCAL_STORAGE_UNAVAILABLE") {
+      return NextResponse.json(
+        apiError("Configuration serveur incomplète (Supabase manquant sur Vercel)."),
+        { status: 500 }
+      );
+    }
+
+    if (reason.startsWith("SUPABASE_")) {
+      return NextResponse.json(apiError("Connexion à la base impossible (Supabase)."), {
+        status: 500,
+      });
+    }
+
     return NextResponse.json(apiError("Impossible de se connecter."), { status: 500 });
   }
 }
