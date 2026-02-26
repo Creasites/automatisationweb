@@ -159,8 +159,12 @@ export async function findUserByEmail(email: string) {
         path: `/rest/v1/users?select=*&email=eq.${encodeURIComponent(normalized)}&limit=1`,
       });
       return rows.length > 0 ? fromSupabaseRow(rows[0]) : null;
-    } catch {
-      throw new Error("SUPABASE_FIND_USER_EMAIL_FAILED");
+    } catch (error) {
+      const status =
+        typeof error === "object" && error !== null && "status" in error
+          ? (error as { status?: number }).status
+          : undefined;
+      throw new Error(`SUPABASE_FIND_USER_EMAIL_FAILED${status ? `:${status}` : ""}`);
     }
   }
 
@@ -234,7 +238,11 @@ export async function createUser(input: {
         throw new Error("Utilisateur déjà existant");
       }
 
-      throw new Error("SUPABASE_CREATE_USER_FAILED");
+      const status =
+        typeof error === "object" && error !== null && "status" in error
+          ? (error as { status?: number }).status
+          : undefined;
+      throw new Error(`SUPABASE_CREATE_USER_FAILED${status ? `:${status}` : ""}`);
     }
   }
 
