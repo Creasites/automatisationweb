@@ -164,7 +164,12 @@ export async function findUserByEmail(email: string) {
         typeof error === "object" && error !== null && "status" in error
           ? (error as { status?: number }).status
           : undefined;
-      throw new Error(`SUPABASE_FIND_USER_EMAIL_FAILED${status ? `:${status}` : ""}`);
+      const message = error instanceof Error ? error.message : undefined;
+      throw new Error(
+        `SUPABASE_FIND_USER_EMAIL_FAILED${status ? `:${status}` : ""}${
+          message ? `:${message}` : ""
+        }`
+      );
     }
   }
 
@@ -242,7 +247,12 @@ export async function createUser(input: {
         typeof error === "object" && error !== null && "status" in error
           ? (error as { status?: number }).status
           : undefined;
-      throw new Error(`SUPABASE_CREATE_USER_FAILED${status ? `:${status}` : ""}`);
+      const message = error instanceof Error ? error.message : undefined;
+      throw new Error(
+        `SUPABASE_CREATE_USER_FAILED${status ? `:${status}` : ""}${
+          message ? `:${message}` : ""
+        }`
+      );
     }
   }
 
