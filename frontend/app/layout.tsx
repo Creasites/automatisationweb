@@ -55,6 +55,9 @@ export const metadata: Metadata = {
     description:
       "Plateforme d'outils web pour analyser, créer et améliorer un site rapidement en France et Belgique francophone.",
   },
+  verification: {
+    google: "-rhqX4AlXYz9wNZzUdRTKOcRBg_PkHbQFn5eQ_zcAfk",
+  },
 };
 
 export default function RootLayout({
